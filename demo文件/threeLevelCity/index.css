@@ -1,0 +1,15 @@
+.container {
+    width:800px;
+    height:100px;
+    margin-left:500px;
+}
+.btn {
+    width:180px;
+    height:40px;
+    font-size:20px;
+}
+.container  .btn:hover {
+    color:#f67676;
+    cursor:pointer;
+    background:rgb(163, 168, 163);
+}

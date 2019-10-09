@@ -1,0 +1,110 @@
+body,ul,li,a {
+    margin:0;
+    padding:0;
+}
+ul {
+    list-style-type:none;/*把ul里边的小符号给去掉*/
+}
+a {
+    text-decoration:none;  /* 去掉了a链接的下划线*/
+}
+/* 以上属于初始化操作，可以减少错误发生 */
+
+.clearfixed::after {
+    display:table;
+    content:"";
+    clear:both;
+}
+.container {
+    width:1200px;
+    /* border:1px solid black; */
+    margin:20px auto;  /* 使得div的大框框居中显示，同时上下又留到一定空间 */
+
+}
+.nav-list {
+    background-color:#808080;
+    height:43px;
+    position:relative;/*作为item的父级元素来定位*/
+}
+.nav-list > li {   /*  加>是为了保证仅在nav-list的子级li里生效，不在孙子（如果有）li里生效 */
+    float:left;  
+    margin:0 20px;
+}
+.nav-list > li > a {
+    display:block;  /* 由于a是行级元素，即便设置了行高，也无法填充到想要的高度，所以弄成块级元素才可以 */
+    padding:0 12px;  /* 通过padding来实现左右填充效果*/
+    color:#fff;
+    font-size:18px;
+    line-height: 42px;
+    height:42px;
+    border:1px solid #808080;
+    border-bottom:none;
+    position:relative;/*为了实现层叠的效果*/
+    z-index:9;
+    
+}
+
+.nav-list > li > a:hover {
+    background-color: #fff;
+    color:#bc0303;
+    border:1px solid #c9c9c9;
+    border-bottom:none;
+
+}
+/*以上为一级菜单*/
+.item {
+    width:160px;
+    top:42px;
+    /* margin:2px 10px; 用来调试*/
+    position:absolute;
+    z-index:1;
+    display:none;
+}
+.item-lists {
+    border:1px solid #c9c9c9;
+    background-color:#fff;
+    padding:2px 0 10px 12px;
+    height:200px;  /*请看看这里，我如果不对这个高度设置，就没有页面的效果*/
+    
+}
+.item-lists > li {
+    height:40px;
+    float:left;
+    margin:10px;
+    
+}
+.item-lists > li > a {
+    color:#6e6e6e;
+    line-height:40px;/*为了居中效果*/
+    
+}
+.item-lists > li > a:hover {
+    text-decoration:underline;
+}
+/* .nav-list .show .item  {
+    display:block;
+} */
+/*以上为二级菜单*/
+/* 实际上我的show名存实亡，无法起到控制显示的效果，真正起作用的是mid，big，biggest-cup*/
+.nav-list > .mid-cup > a,
+.nav-list > .big-cup > a,
+.nav-list > .biggest-cup > a {  /*当鼠标移到二级菜单上，一级菜单的样式继续应用,即显示控制*/
+    background-color: #fff;
+    color:#bc0303;
+    border:1px solid #c9c9c9;
+    border-bottom:none;
+}
+.nav-list .mid-cup .item {
+    display:block;
+    width:120px;
+   
+}
+.nav-list .big-cup .item {
+    display:block;
+    width:160px;
+}
+.nav-list .biggest-cup .item  {
+    display:block;
+    width:300px;
+  
+}

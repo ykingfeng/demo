@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ch">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>全国三级城市联动</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <!-- 动态select选项 -->
+   <div class="container"> 
+       <select name="" id="province" class="btn"></select>
+       <select name="" id="city" class="btn"></select>
+       <select name="" id="district" class="btn"></select>
+
+    </div>
+    <script src="作业 全国三级城市联动Select选择 素材.js">
+     /*   var province =document.getElementById("province");
+        var city=document.getElementById("city");
+        var district=document.getElementById("district");
+        //创建元素方法1
+       /*  var option =document.createElement("option");
+        option.text="北京";
+        option.value="bj";
+        province.appendChild(option); */
+        //用系统提供的方法2
+        /* var option=new Option("四川","sc");
+        province.options.add(option); 下面是简写版本 */
+        
+     /*   var provinceList=[{
+            name:"北京",//变成了对象
+            cityList:[
+                {name:"市辖区",districtList:["东城区","西城区"]},
+                {name:"县",districtList:["密云县","延庆县"]}
+                     ]
+        },
+        {
+            name:"四川",
+            cityList:[
+                {name:"成都市",districtList:["市辖区","青羊区"]},
+                {name:"自贡市",districtList:["市辖区","自流井区","大安区"]},
+                {name:"泸州市",districtList:["市辖区","东区"]}
+                     ]
+        },
+        {
+            name:"河南",
+            cityList:[
+                {name:"郑州",districtList:["市辖区","中原区"]},
+                {name:"信阳",districtList:["市辖区","浉河区","羊山新区"]},
+                {name:"许昌市",districtList:["市辖区","东区","襄县"]}
+                     ]
+        }
+    ]; 
+    /*    for(i=0;i<provinceList.length;i++) {
+            province.options.add(new Option(provinceList[i].name,provinceList[i].name));//简写
+        }
+       
+        //进行监听
+        province.onchange = ProvinceChange;
+        ProvinceChange(); //
+        CityChange(); //这两行导致默认情况下，后两个菜单会出现默认选项
+        
+        function ProvinceChange() {
+            //province.selectedIndex;   selectedIndex有点类似数组，能反映出选中了第几个
+            console.log(province.selectedIndex);
+            city.options.length=0; //清空option,(每次点击都会增加option的长度)
+
+            var cityAry=provinceList[province.selectedIndex].cityList;
+            for(var i=0;i<cityAry.length;i++) {
+                var option=new Option(cityAry[i].name,cityAry[i].name);
+                city.options.add(option); //这两行代码也可以采用上边的简写
+           
+            }
+         }
+         city.onchange=CityChange;
+         
+         function CityChange() {
+             console.log(city.selectedIndex);
+             district.options.length=0; //同样是为了清空option，防止后边选项重复
+             var districtAry=provinceList[province.selectedIndex].cityList[city.selectedIndex].districtList;
+             for( var i=0;i<districtAry.length;i++) {
+                 district.options.add(new Option(districtAry[i],districtAry[i]));
+            
+                 
+
+                 
+             }
+         } */
+    </script>
+</body>
+</html>

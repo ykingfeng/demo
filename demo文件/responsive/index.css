@@ -1,0 +1,126 @@
+body,ul,li,a,p {
+    margin: 0;
+    list-style: none;
+    text-decoration: none;
+}
+body {
+    background: #222;
+}
+a,p {
+    color: #fff;
+}
+.nav-wrapper {
+    height: 44px;
+    background: rgba(0,0,0,0.8);
+}
+.nav-content {
+    max-width: 980px;
+    margin: 0 auto;
+}
+.list1 {
+    display: none;
+    justify-content: space-between;
+    margin: 0 30px;
+}
+.list, .more {
+    font-size: 30px;
+}
+.list2 {
+    display: flex;
+    /* width: 980px; */
+    justify-content: space-between;
+    margin: 0 30px;
+}
+.list2.list2-active {/* 中间没有空 ,表示这两个熟悉同时存在的情况下，这个样式才会生效*/
+    display: flex;
+}
+.list1 li, .list2 li {
+    /* width: 100px; */
+    height: 44px;
+    
+}
+.logo {
+    background-image: url("./sucai.png");
+    width: 40px;
+    background-size: 30px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.list1 li a, .list2 li a {
+    display: inline-block;
+    height: 44px;
+    line-height: 44px;
+    font-weight: 200;/* 字体粗细 */
+}
+
+@media only screen and ( max-width:600px ) {
+    .list1 {
+        display: flex;
+    }
+    .list2 { 
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    padding: 0;
+    top: 44px;
+    width: 100%;  
+    margin: 0;
+    background: #222;   
+    }
+    .list2 .logo {
+        display: none;
+    }
+    .list2 li {
+        width: 80%;
+        margin: 0 auto;
+        border-top: 1px solid #555;
+    }
+    .list2 li:first-child {
+        border-top: none;
+    }
+}
+main {
+    max-width: 980px;
+    margin: 0 auto;
+}
+.main-content {
+    /* display: flex; */
+    width: auto;
+    margin: 80px auto;
+}
+.main-content p {
+    display: inline-block;
+    box-sizing: border-box;
+    width: 40%;
+    height: 200px;
+    padding-top: 50px;
+
+    color: #fff;
+    border-top: 1px solid #888;
+    font-size: 20px;
+}
+.main-content p:nth-child(2n+1) {
+    float: left;
+}
+.main-content p:nth-child(2n) {
+    float: right;
+}
+.clearfix {
+    content:"";
+    display: table;
+    clear: both;
+}
+@media only screen and (max-width:767px) {
+    .main-content {
+        display: flex;
+        flex-direction: column;
+    }
+    .main-content p {
+        width: 100%;
+        padding-top: 30px;
+        padding-bottom: 10px;
+        /* height: 150px; */
+        font-size: 16px;
+ 
+    }
+}

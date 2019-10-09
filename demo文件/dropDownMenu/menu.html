@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>二级下拉菜单</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="nav">
+        <div class="container ">
+           <ul class="nav-list clearfixed" id="navList">
+               <li>
+                   <a href="">首页</a>
+               </li>
+               <li >  <!-- 此处的class="show"要去掉，不然一开始就会显示出二级菜单 -->
+                   <a href="">关于蝉壳</a>
+                   <div class="item">
+                       <ul class="item-lists">
+                           <li><a href="">蝉壳历史1</a></li>
+                           <li><a href="">蝉壳历史2</a></li>
+                           <li><a href="">蝉壳历史3</a></li>
+                       </ul>
+                   </div>
+               </li>
+               <li>
+                   <a href="">新闻与媒体</a>
+               </li>
+               <li>
+                   <a href="">产品</a>
+                   <div  class="item">
+                    <ul class="item-lists">
+                       <li><a href="">产品1</a></li>
+                       <li><a href="">产品2</a></li>
+                       <li><a href="">产品3</a></li>
+                       <li><a href="">产品4</a></li>
+                       <li><a href="">产品5</a></li>
+                    </ul>
+                   </div>
+               </li>
+               <li>
+                   <a href="">服务与机构</a>
+               </li>
+               <li>
+                   <a href="">人才招聘</a>
+                   <div  class="item">
+                    <ul class="item-lists">
+                       <li><a href="">人才招聘1</a></li>
+                       <li><a href="">人才招聘2</a></li>
+                       <li><a href="">人才招聘3</a></li>
+                       <li><a href="">人才招聘4</a></li>
+                       <li><a href="">人才招聘5</a></li>
+                       <li><a href="">人才招聘6</a></li>
+                       <li><a href="">人才招聘7</a></li>
+                       <li><a href="">人才招聘8</a></li>
+                    </ul>
+                   </div>
+
+               </li>
+               <li>
+                   <a href="">联系我们</a>
+               </li>
+           </ul>
+        </div>
+    </div>
+    <script>
+        var navList=document.getElementById("navList").getElementsByTagName("li");
+        for(var i=0;i< navList.length;i++){
+            navList[i].onmousemove=function(){
+                /* console.log(this); */
+                if(this.className !="show" ){
+                    this.className="show";
+                    var dou=this.getElementsByTagName("li");
+                    if(dou.length <4) {
+                        this.className="mid-cup";
+                    }
+                    else if(dou.length<8) {
+                        this.className="big-cup";
+                    }
+                       else {
+                           this.className="biggest-cup";
+                       }
+                }
+                
+            }
+            navList[i].onmouseout=function(){
+               /*  console.log(this); */
+               
+               if(this.className !=""){
+                this.className="";
+               }
+              /*  加if是为了优化代码，减少错误 */
+            }
+            /*移上去显示，移走不显示，跟if，else的逻辑有差别*/
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ch">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>chanke首页弹窗</title>
+    <style>
+        body {
+            height:970px;
+            margin:0;
+            padding:0;
+            overflow:hidden;
+        }
+        .ad1 {
+            position:fixed;
+            top:0;
+            left:-420px;
+            width:400px;
+            height:225px;
+            border:2px solid black;
+        }
+        .ad2 {
+            position:fixed;
+            top:-250px; 
+            right:0;
+            width:400px;
+            height:225px;/* 本来根据图片原始长宽比例计算得到225，但是为了下边的js效果所以改成0 */
+            border:2px solid black;
+        }
+        .ad3 {
+            position:fixed;
+            bottom:0;
+            right:0;
+            width:400px;
+            height:0; 
+            border:2px solid black;
+        }
+        
+        .bg {
+            width:400px;
+        }
+        .btn {
+            position:absolute;
+            top:0;
+            right:0;
+            cursor:pointer;
+        }   
+    </style>
+</head>
+<body>
+    <iframe src="https://www.qq.com" frameborder="0" width="100%" height="100%"></iframe><!--  此处仅仅设置高度没有用，还需要在css里设置整个页面的高度 -->
+    <div id="myAd1" class="ad1">
+            <img  id="myClose1" class="btn" src="close.jpg" alt="">
+            <a href="#"><img class="bg" src="0.jpg" alt=""></a>
+    </div>
+    <div id="myAd2" class="ad2">
+        <img  id="myClose2" class="btn" src="close.jpg" alt="">
+        <a href="#"><img class="bg" src="0.jpg" alt=""></a>
+    </div>
+    <div id="myAd3" class="ad3">
+        <img  id="myClose3" class="btn" src="close.jpg" alt="">
+        <a href="#"><img class="bg" src="0.jpg" alt=""></a>
+    </div>
+    <!-- 下面为js部分 -->
+    <script>
+        var myAd1=document.getElementById("myAd1");
+        var myClose1=document.getElementById("myClose1");
+        var ad1Left=-420;
+        myClose1.onclick=function() {
+            myAd1.style.display= "none";
+        } 
+        function ad1ShowFunc() {
+            if(ad1Left < 0) {
+                ad1Left += 2;
+                myAd1.style.left=ad1Left + "px";//字符串
+            }
+            else {
+                myAd1.style.left="0px";
+                clearInterval(show1); //清理计时器，省的继续计时浪费资源
+            }
+        }
+
+        var myAd2=document.getElementById("myAd2");
+        var myClose2=document.getElementById("myClose2");
+        var ad2Top=-250;
+        myClose2.onclick=function() {
+            myAd2.style.display= "none";//点击x，广告消失
+        }
+        //var show2=setInterval(adShowFunc,5);//此处20是毫秒单位
+        function ad2ShowFunc() {
+            
+           if(ad2Top < 0) {
+                ad2Top += 2;
+                myAd2.style.top=ad2Top + "px";//字符串
+
+            }
+            else {
+                myAd2.style.top="0px";
+                clearInterval(show2); //清理计时器，省的继续计时浪费资源
+            }
+        }
+
+
+        var myAd3=document.getElementById("myAd3");
+        var myClose3=document.getElementById("myClose3");
+        var ad3Height=0;
+        myClose3.onclick=function() {
+            var close=setInterval(adClose,10);
+        }
+        //var show3=setInterval(adShowFunc,5);//此处5是毫秒单位
+        function ad3ShowFunc() {
+            if(ad3Height<225) {
+                ad3Height += 2;
+                myAd3.style.height=ad3Height + "px";//字符串
+
+            }
+            else {
+                myAd3.style.height="225px";
+                clearInterval(show3); //清理计时器，省的继续计时浪费资源
+            }
+        }
+       /*  window.onload=function() {
+            var show1=setInterval(ad1ShowFunc,5);//页面加载完成后，广告窗才徐徐谈起
+        } */
+
+        function adClose(){  //下滑关闭的函数
+            if(ad3Height>0){
+                ad3Height-=2;
+                myAd3.style.height=ad3Height+"px";
+            }else{
+                myAd3.style.height="0px";
+                ad3Height=0;
+                clearInterval(close);
+            }
+        }
+        window.onload=function() {
+             show1=setInterval(ad1ShowFunc,5);//页面加载完成后，广告窗才徐徐谈起
+             show2=setInterval(ad2ShowFunc,5);//页面加载完成后，广告窗才徐徐谈起
+             show3=setInterval(ad3ShowFunc,5);
+        } 
+      
+    </script>
+    <!-- 改完时候有个想法：右下角弹窗，会不会用bottom值来设定会更好一点？ -->
+</body>
+</html>

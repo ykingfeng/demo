@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>taobao关键词搜索</title>
+    <style>
+        body,ul,li {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+        .wrapper {
+            position: relative;
+            display: inline-block;
+            margin: 100px;
+            border: 2px solid #ff5000;
+            border-radius: 20px;
+            border-right: none;
+            width: 474px;
+            height: 36px;
+        }
+        .search {
+            overflow: hidden;
+            display: inline-block;
+            border-radius: 18px;
+           
+        }
+        input {
+            padding: 6px 0;
+            margin: 0 0 0 22px;
+            text-align: 10px;
+            width: 400px;
+            height: 24px;
+            line-height: 24px;
+            border: none;
+            outline: 0;
+            background: #fff;
+            /* text-shadow: 10px 10px 10px #000; */
+            /* caret-height: 30px; */
+            font-size: 20px;
+           
+        }
+        input:focus {
+            color: green;
+        }
+        .btn {
+            position: absolute;
+            top: 0;
+            right: 0;
+            z-index: 999;
+            width: 74px;
+            height: 36px;
+            overflow: hidden;
+            text-align: cneter;
+            border-top-right-radius: 20px;
+            border-bottom-right-radius: 20px;
+            font-size: 18px;
+            font-weight: 700;
+            color: #fff;
+            background: #ff4200;
+            cursor: pointer;
+            border: none;
+            outline: none;
+        }
+        ul {
+            position: absolute;
+            display: none;/* 默认不显示 */
+            border: 1px solid #ccc;
+            top: 38px;
+            left: 0;
+            width: 400px;
+            background: #fff;
+        }
+        li {
+            padding: 3px 10px;
+        }
+    </style>
+</head>
+<body>
+
+       
+    <div class="wrapper">
+        <div class="search">
+            <input type="text" placeholder="搜索" >
+        </div>
+        <button class="btn">搜索</button>
+        <ul>
+            <!-- <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li> -->
+        </ul>
+    </div>
+    <script>
+        var oInput=document.getElementsByTagName('input')[0],
+            oUl=document.getElementsByTagName('ul')[0];
+        oInput.onfocus=function () {
+
+        }
+        oInput.oninput=function () {//keyup事件无法监听到复制粘贴的变化
+            var value=this.value;
+            console.log(value);
+            var oScript=document.createElement('script');
+            oScript.src='https://suggest.taobao.com/sug?q=' + value + '&callback=cbs';
+            document.body.appendChild(oScript);
+            oScript.remove();//每次对input区域做更改，就发送出去数据，要一个就够了
+            
+        }//一个请求对应一个响应，只要发送请求，就一定会有响应(或对或错)
+        function cbs(data) {
+                console.log(data);
+                var str='';
+                var len=data.result.length;
+                if( len > 0 ) {
+                    oUl.style.display='block';
+                    data.result.forEach(function (ele,index) {
+                  
+                    str +='<li>' + ele[0] + '</li>';
+                    });
+                    oUl.innerHTML=str;
+                }
+                else {
+                    oUl.style.display='none';
+                }
+                
+            }
+    </script>
+</body>
+</html>
